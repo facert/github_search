@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<head>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+</head>
+
+<html lang="zh-CN">
+    <body>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>repo</td>
+                        <td>desc</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for repo, desc in repos %}
+                    {% if desc.is_show %}
+                    <tr>
+                        <td>{{repo}}</td>
+
+                        <td>{{desc.repo_desc}} [star: {{desc.star}}]</td>
+
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+
+    </body>
+</html>
