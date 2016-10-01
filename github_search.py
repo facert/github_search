@@ -11,6 +11,7 @@ SEARCH_API = 'https://api.github.com/search/repositories?q=%s&sort=updated&order
 
 
 def search_github(keyword):
+    # 爬取 20 页最新的列表
     for i in range(1, 21):
         res = requests.get(SEARCH_API % (keyword, i))
         repo_list = res.json()['items']
@@ -21,12 +22,13 @@ def search_github(keyword):
                 'star': repo['stargazers_count'],
                 'is_show': REPO_SHOW
             }
-            REDIS.hsetnx('repos', repo_name, json.dumps(desc))
-            print repo_name
+            if REDIS.hsetnx('repos', repo_name, json.dumps(desc)):
+                print repo_name
         time.sleep(10)
 
 
 if __name__ == '__main__':
-    keywords = ['爬虫', 'spider', 'crawel']
+    keywords = ['爬虫', 'spider', 'crawl']
+    REDIS.set('keywords', ' '.join(keywords))
     for keyword in keywords:
         search_github(keyword)

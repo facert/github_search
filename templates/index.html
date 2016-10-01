@@ -1,27 +1,34 @@
 <!DOCTYPE html>
 <head>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <script src="{{ url_for('static', filename='jquery-1.11.2.min.js') }}"></script>
 </head>
 
 <html lang="zh-CN">
     <body>
         <div class="container">
+            <div>
+                <h4>{{keywords}} 在 github 上的搜索结果</h4>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <td>repo</td>
                         <td>desc</td>
+                        <td>star</td>
+                        <td>删除</td>
                     </tr>
                 </thead>
 
                 <tbody>
                     {% for repo, desc in repos %}
-                    {% if desc.is_show %}
+                    {% if desc.is_show == '1' %}
                     <tr>
-                        <td>{{repo}}</td>
+                        <td><a href="{{repo}}" target='_blank'>{{repo}}</a></td>
 
-                        <td>{{desc.repo_desc}} [star: {{desc.star}}]</td>
-
+                        <td>{{desc.repo_desc}}</td>
+                        <td>{{desc.star}}</td>
+                        <td><input type="checkbox" class="del-repo" data={{repo}}></td>
                     </tr>
                     {% endif %}
                     {% endfor %}
@@ -30,5 +37,23 @@
             </table>
         </div>
 
+        <script>
+            $('.del-repo').on('click', function(){
+                var repo = $(this).attr('data');
+                $.ajax({
+                    url: '/del_repo?repo='+repo,
+                    type: 'DELETE',
+                    success: function(result) {
+
+                    }
+                });
+                $(this).parent().parent().hide()
+            })
+
+
+        </script>
+
     </body>
+
+
 </html>
