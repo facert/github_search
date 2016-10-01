@@ -21,6 +21,9 @@
   
   > python app.py
   
+### 搜索参数配置
+  * github_search.py 里面 修改 keywords = ['**', '**', '**'] 可以定制搜索
+  
 ### screenshots
 
   ![demo](https://raw.githubusercontent.com/facert/github_search/master/screenshots/demo.png)
