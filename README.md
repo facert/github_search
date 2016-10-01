@@ -12,4 +12,16 @@
   
   > pip install requirements.txt
   
-### 
+### run
+  * run 搜索结果的脚本
+  
+  > python github_search.py 
+
+  * 开启 web 服务, 访问 http://127.0.0.1:5000/
+  
+  > python app.py
+  
+### screenshots
+
+  ![demo](https://raw.githubusercontent.com/facert/github_search/master/screenshots/demo.png)
+  
