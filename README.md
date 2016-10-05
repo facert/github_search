@@ -6,7 +6,7 @@
 ### 安装
   * 安装 redis 
   
-   > apt-get redis-server
+   > apt-get install redis-server
       
   * 安装依赖
   
@@ -22,7 +22,7 @@
   > python app.py
   
 ### 搜索参数配置
-  * github_search.py 里面 修改 keywords = ['**', '**', '**'] 可以定制搜索
+  * github_search.py 里面 修改 keywords = ['', '', ''] 可以定制搜索
   
 ### screenshots
 
